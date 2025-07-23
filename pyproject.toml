@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "blackcat"
+version = "0.0.1"
+description = ""
+authors = ["draew6"]
+packages = [{ include = "blackcat" }]
+requires-python = ">=3.13"
+
+[tool.poetry.dependencies]
+python = ">=3.13"
+pydantic = "2.11.7"
+httpx = "0.28.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
