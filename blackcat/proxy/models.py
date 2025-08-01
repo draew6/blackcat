@@ -19,3 +19,17 @@ class Proxy(BaseModel):
         if self.username and self.password:
             return f"{self.username}:{self.password}@{self.host}:{self.port}"
         return f"{self.host}:{self.port}"
+
+    @property
+    def data(self):
+        return (
+            self.provider,
+            self.username,
+            self.password,
+            self.host,
+            self.port,
+            self.provider_external_id,
+            self.country_code,
+            self.asn_name,
+            self.asn_number
+        )
