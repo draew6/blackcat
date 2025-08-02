@@ -24,6 +24,22 @@ class Proxy(BaseModel):
             return f"{username}:{password}@{host}:{port}"
         return f"{host}:{port}"
 
+    @staticmethod
+    def split_ip(ip: str) -> tuple[str | None, str | None, str, int]:
+        if "@" in ip:
+            user_pass, host_port = ip.split("@", 1)
+            if ":" in user_pass:
+                username, password = user_pass.split(":", 1)
+            else:
+                username, password = user_pass, None
+        else:
+            username, password = None, None
+            host_port = ip
+
+        host, port_str = host_port.rsplit(":", 1)
+        port = int(port_str)
+        return username, password, host, port
+
     @property
     def data(self):
         return (
