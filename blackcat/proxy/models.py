@@ -16,9 +16,13 @@ class Proxy(BaseModel):
 
     @property
     def ip(self):
-        if self.username and self.password:
-            return f"{self.username}:{self.password}@{self.host}:{self.port}"
-        return f"{self.host}:{self.port}"
+        return self.get_ip(self.username, self.password, self.host, self.port)
+
+    @staticmethod
+    def get_ip(username: str | None, password: str | None, host: str, port: int) -> str:
+        if username and password:
+            return f"{username}:{password}@{host}:{port}"
+        return f"{host}:{port}"
 
     @property
     def data(self):
@@ -31,5 +35,5 @@ class Proxy(BaseModel):
             self.provider_external_id,
             self.country_code,
             self.asn_name,
-            self.asn_number
+            self.asn_number,
         )
