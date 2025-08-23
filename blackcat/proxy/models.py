@@ -21,8 +21,8 @@ class Proxy(BaseModel):
     @staticmethod
     def get_ip(username: str | None, password: str | None, host: str, port: int) -> str:
         if username and password:
-            return f"{username}:{password}@{host}:{port}"
-        return f"{host}:{port}"
+            return f"http://{username}:{password}@{host}:{port}"
+        return f"http://{host}:{port}"
 
     @staticmethod
     def split_ip(ip: str) -> tuple[str | None, str | None, str, int]:
