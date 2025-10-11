@@ -10,7 +10,7 @@ class WebShareProvider:
     def get_proxies(self) -> list[Proxy]:
         response = httpx.get(
             "https://proxy.webshare.io/api/v2/proxy/list/?mode=direct&page=1&page_size=1000",
-            headers={"Authorization": f"Token {self.token}"},
+            headers={"Authorization": f"Token {self.token}"}, timeout=10.0,
         )
         data = response.json()
         return [
