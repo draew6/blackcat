@@ -1,5 +1,6 @@
 from ..models import Proxy
 import httpx
+from httpx_retries import RetryTransport, Retry
 
 
 class WebShareProvider:
@@ -8,9 +9,12 @@ class WebShareProvider:
         self.proxies = self.get_proxies()
 
     def get_proxies(self) -> list[Proxy]:
-        response = httpx.get(
+        retry = Retry(total=2)
+        client = httpx.Client(transport=RetryTransport(retry=retry))
+
+        response = client.get(
             "https://proxy.webshare.io/api/v2/proxy/list/?mode=direct&page=1&page_size=1000",
-            headers={"Authorization": f"Token {self.token}"}, timeout=10.0,
+            headers={"Authorization": f"Token {self.token}"}, timeout=5.0,
         )
         data = response.json()
         return [

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "blackcat"
-version = "0.1.1"
+version = "0.1.2"
 description = "Library for interacting with Proxy Providers"
 authors = ["draew6"]
 packages = [{ include = "blackcat" }]
@@ -10,6 +10,7 @@ requires-python = ">=3.13"
 python = ">=3.13"
 pydantic = ">=2.11,<3.0.0"
 httpx = ">0.28,<1.0.0"
+httpx-retries = ">=0.4.3"
 
 [build-system]
 requires = ["poetry-core"]
