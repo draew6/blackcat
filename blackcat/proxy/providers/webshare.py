@@ -9,7 +9,7 @@ class WebShareProvider:
         self.proxies = self.get_proxies()
 
     def get_proxies(self) -> list[Proxy]:
-        retry = Retry(total=2)
+        retry = Retry(total=1)
         client = httpx.Client(transport=RetryTransport(retry=retry))
 
         response = client.get(
